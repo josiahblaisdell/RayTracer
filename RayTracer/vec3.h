@@ -28,7 +28,7 @@ public:
 
 	inline vec3& operator*=(const double t);
 	inline vec3& operator/=(const double t);
-	inline vec3 operator+(const vec3 &v1, const vec3 &v2);
+
 
 	inline vec3 unitize(vec3 v) { return v / v.length(); }
 
@@ -37,4 +37,5 @@ public:
 	double e[3];
 	~vec3();
 };
+
 
