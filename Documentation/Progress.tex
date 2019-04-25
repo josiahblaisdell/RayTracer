@@ -1,0 +1,271 @@
+\documentclass[11pt]{article}
+\usepackage[]{times}
+\usepackage{amsmath}
+\usepackage{paralist}
+%\usepackage{lineno}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{fullpage}
+\usepackage{float}
+\usepackage{psfrag}
+\usepackage{verbatim}
+\usepackage{amsthm}
+\usepackage[]{times}
+\usepackage{amsmath}
+\usepackage{paralist}
+%\usepackage{lineno}
+\usepackage{fullpage}
+\usepackage{amssymb}
+\usepackage{amsrefs}
+\usepackage{listings}
+\usepackage{xcolor}
+%\usepackage{mathabx}
+
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=blue,
+citecolor=blue, urlcolor=blue]{hyperref}
+
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand{\nboldsymbol}[1]{\boldsymbol{#1}}
+
+
+\def\Re{\mathop\mathrm{Re}\nolimits}    % real part
+\def\Im{\mathop\mathrm{Im}\nolimits}    % imaginary part
+\def\sech{\mathop\mathrm{sech}\nolimits}
+\def\hu{\hat{\mathbf{u}}}
+\def\hU{\hat{\mathbf{U}}}
+\def\exi{\mathbf{e}_{\nboldsymbol{\xi}}}
+
+\newcommand{\rmO}{\mathrm{O}}           % Landau O
+\newcommand{\rmo}{\mathrm{o}}           % Landau o
+\newcommand{\rmd}{\mathrm{d}}           % derivatives
+\newcommand{\rme}{\mathrm{e}}           % Euler constant
+\newcommand{\rmi}{\mathrm{i}}           % imaginary unit
+
+
+
+%\usepackage[sans]{dsfont}
+
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{fullpage}
+\usepackage{psfrag}
+\usepackage{verbatim}
+
+%\bibpunct{(}{)}{;}{a}{,}{,}
+
+
+\renewcommand{\labelenumii}{\alph{enumii})}
+\renewcommand{\labelenumiii}{\roman{enumiii}.}
+
+\newcommand{\sign}{\text{sign}}
+\newcommand{\ud}[1]{\, \mathrm{d}#1}
+\newcommand{\deriv}[3][]{\frac{\ud^{#1} \hspace{-0.3mm} #2}{\ud{#3}^{#1}}}
+\newcommand{\pderiv}[3][]{\frac{\d^{#1} \hspace{-0.1mm} #2}{\d{#3}^{#1}}}
+\renewcommand{\div}[1][]{\nabla_{\!\! #1}\cdot \!}
+\newcommand{\grad}[1][]{\nabla_{\! #1} }
+\renewcommand{\P}{ \mathbb P }
+\newcommand{\EXP}{\mathbb{E}}
+\newcommand{\IND}[1] {{ \mathds{1}_{ #1 }} }
+\newcommand{\ds}{\displaystyle}
+\newcommand {\norm}[1]{\left \| #1 \right \|}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\vp}{\varphi}
+\newcommand{\eps}{\epsilon}
+\newcommand{\om}{\omega}
+\newcommand{\eqdstn}{\stackrel{d}{=}}
+\newcommand{\convd}{\stackrel{D}{\to}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Ab}{\boldsymbol{\mathcal{A}}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Ba}{B^{(\alpha)}}
+\newcommand{\Dom}{\text{Dom}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\d}{\partial}
+\newcommand{\X}{ \mathsf X }
+\newcommand{\Lp}[1]{ L^{#1} }
+\newcommand{\Lm}[1]{ L^{#1}_- }
+\newcommand{\Lpn}[1]{\tilde{L}^{#1}_+ }
+\newcommand{\Lmn}[1]{\tilde{L}^{#1}_- }
+\renewcommand{\sp}[1]{s^{#1}_+ }
+\newcommand{\sm}[1]{s^{#1}_- }
+\renewcommand{\mp}[1]{m^{#1}_+ }
+\newcommand{\mm}[1]{m^{#1}_- }
+\renewcommand{\a}{\alpha}
+\newcommand{\ab}{\boldsymbol{\alpha}}
+\newcommand {\abs}[1]{\left | #1 \right |}
+\newcommand {\Abs}[1]{ \big| #1 \big|}
+\renewcommand{\>}{\rightarrow}
+\newcommand{\Eb}{\boldsymbol{\mathcal{E}}}
+\newcommand{\y}{\boldsymbol{y}}
+\newcommand{\x}{{\bf x}}
+\newcommand{\D}{\boldsymbol{\mathsf{D}}}
+\newcommand{\W}{\boldsymbol{\mathbf{W}}}
+\newcommand{\gA}{\mathscr{A}}
+\newcommand{\T}{\boldsymbol{T}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\G}{\boldsymbol{G}}
+\newcommand{\U}{\boldsymbol{U}}
+\newcommand{\XY}[1]{X_{#1}^{(Y)}}
+\newcommand{\Ub}{\bar{U}}
+\newcommand{\Db}{\bar{D}}
+\newcommand{\Cb}{\bar{C}}
+\newcommand{\expar}[1]{\exp\!\left( #1 \right)}
+\newcommand{\lap}{\Delta}
+\newcommand{\mr}[1]{{\mathrm{#1}}}
+\newcommand{\ip}[2]{\ensuremath{\left\langle #1, #2 \right\rangle}}
+\newcommand{\zetas}{\tilde{\zeta}}
+
+%\startlocaldefs
+\numberwithin{equation}{section}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{Note}{Note}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{definition}{Definition}[section]
+
+
+\setlength{\textwidth}{6.7in}
+\addtolength{\topmargin}{-0.0in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\textheight}{9in}
+
+
+%Special Functions
+\DeclareMathOperator{\Li}{Li}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\begin{document}
+\lstset{style=mystyle}
+\pagestyle{empty}
+\noindent
+{\textsf{\textbf{Josiah Blaisdell}}} \hfill
+{\textsf{\textbf{ Ray Tracing in a Quarter }}}
+\hfill
+{\textsf{\textbf{Meetings: 12:00pm Monday}}}
+\underline{\hspace{6.7in}}
+\vspace{.2in}
+
+
+\noindent
+{\textsf{\textbf{Overview}}}: my plan is to first go through the work in "\hyperlink{http://www.realtimerendering.com/raytracing/Ray\%20Tracing\%20in\%20a\%20Weekend.pdf}{Ray Tracing in a Weekend}". This book provides an introduction to Ray Tracing by walking the reader through creating a basic ray tracer written in C++. I chose to use this tutorial because it is cited on \hyperlink{https://devblogs.nvidia.com/accelerated-ray-tracing-cuda/}{nVidia's developer blogs}.  
+Once I have written a basic ray tracer in C++ I will implement bounding volume hierarchies and lighting using Peter Shirley's next book "Ray Tracing: the Next Week." By the end of the quarter my goal is to have a ray tracer application that can draw the Cornell Box.
+
+
+\vspace{.2in}
+\noindent
+{\textsf{\textbf{The vec3 class}}}: My first goal is to write a basic vec3 class. I chose to do this myself for this project rather than use the glm::vec3 class because I want a better understanding of some C++ principles that I may be rusty on. I will write my code so that I can easily replace my vec3 class with the glm::vec3 class. 
+
+\vspace{.2in}
+\noindent
+I make heavy use of the "inline" keyword because the operations in vec3 are very small. The amount of time to retrieve the operation from data memory exceeds the amount of time needed to send the function to the CPU. While the functions will not be called frequently in my program, it is reasonable that a larger program would call all these functions frequently (https://isocpp.org/wiki/faq/inline-functions). I use "pass-by-const-reference" because I do not want to remind my future self that these functions should not modify the value of the arguments and because I do not want to pass copies of vec3 every time I do vector addition. This could get expensive.
+
+\vspace{.2in}
+\noindent
+\begin{lstlisting}[language=C, caption=vec3 Class]
+class vec3
+{
+	public:
+	//default constructor does nothing
+	vec3() {}
+	//constructor initializes array of 3 doubles
+	vec3(double e0, double e1, double e2) { e[0] = e0; e[1] = e1; e[2] = e2; }
+	//getter for x coordinate
+	inline double x() const { return e[0]; }
+	//getter for y coordinate
+	inline double y() const { return e[1]; }
+	//getter for z coordinate
+	inline double z() const { return e[2]; }
+	//getter for r coordinate
+	inline double r() const { return e[0]; }
+	//getter for g coordinate
+	inline double g() const { return e[1]; }
+	//getter for b coordinate
+	inline double b() const { return e[2]; }
+	//Multiplying by 1 does nothing
+	inline const vec3& operator+() const { return *this; }
+	//Multiplying by -1 negates the vector
+	inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
+	//Bracket accessor returns i'th element
+	inline double operator[](int i) const { return e[i]; }
+	//Bracket accessor returns a reference to the i'th element
+	inline double& operator[](int i) { return e[i]; }
+	//+= operator overload (ex v1 += v2;)
+	inline vec3& operator+=(const vec3 &v2);
+	//-= operator overload (ex v1 -= v2;)
+	inline vec3& operator-=(const vec3 &v2);
+	//*= operator overload (ex v1 *= v2;)
+	inline vec3& operator*=(const vec3 &v2);
+	// /= operator overload (ex v1 /= v2;)
+	inline vec3& operator/=(const vec3 &v2);
+	//*= operator overload (ex v1 *= 3.14;)
+	inline vec3& operator*=(const double t);
+	///= operator overload (ex v1 /= 3.14;)
+	inline vec3& operator/=(const double t);
+	//Returns a unit vector pointing in the direction of the original vector.
+	inline vec3 unitize(vec3 v) { return v / v.length(); }
+	//Returns the length of the vector.
+	inline double length() const { return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]); }
+	//Returns the length^2 of the original vector
+	inline double squared_length() const { return e[0] * e[0] + e[1] * e[1] + e[2] * e[2]; }
+	//Holds the data for the vector: x = e[0] , y = e[1], z = e[2]
+	double e[3];
+	~vec3();
+};
+\end{lstlisting}
+\vspace{.2in}
+\noindent
+In addition to the above, I have defined vec3 addition, multiplication, division and substraction. I have also defined the cross product and the dot product. This completes the vec3 class.
+
+
+
+
+
+
+
+
+\end{document} 

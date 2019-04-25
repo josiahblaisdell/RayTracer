@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'RayTracer.ui'
 **
-** Created by: Qt User Interface Compiler version 5.11.2
+** Created by: Qt User Interface Compiler version 5.12.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -40,24 +40,24 @@ public:
     void setupUi(QMainWindow *RayTracerClass)
     {
         if (RayTracerClass->objectName().isEmpty())
-            RayTracerClass->setObjectName(QStringLiteral("RayTracerClass"));
+            RayTracerClass->setObjectName(QString::fromUtf8("RayTracerClass"));
         RayTracerClass->resize(877, 669);
         CreatePPM = new QAction(RayTracerClass);
-        CreatePPM->setObjectName(QStringLiteral("CreatePPM"));
+        CreatePPM->setObjectName(QString::fromUtf8("CreatePPM"));
         LoadPPM = new QAction(RayTracerClass);
-        LoadPPM->setObjectName(QStringLiteral("LoadPPM"));
+        LoadPPM->setObjectName(QString::fromUtf8("LoadPPM"));
         centralWidget = new QWidget(RayTracerClass);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_2 = new QGridLayout(centralWidget);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
 
         gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
 
@@ -66,16 +66,16 @@ public:
 
         RayTracerClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(RayTracerClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 877, 21));
         menuFile = new QMenu(menuBar);
-        menuFile->setObjectName(QStringLiteral("menuFile"));
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
         RayTracerClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(RayTracerClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
         RayTracerClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(RayTracerClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
+        statusBar->setObjectName(QString::fromUtf8("statusBar"));
         RayTracerClass->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());

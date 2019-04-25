@@ -1,12 +1,5 @@
 #include "vec3.h"
 
-
-
-vec3::vec3()
-{
-}
-
-
 inline vec3 & vec3::operator+=(const vec3 & v2)
 {
 	e[0] += v2.e[0];
@@ -50,14 +43,10 @@ inline vec3 & vec3::operator*=(const double t)
 inline vec3 & vec3::operator/=(const double t)
 {
 	//multiplication is faster than division.
-	float div = 1 / t;
+	double div = 1 / t;
 	e[0] *= div;
 	e[1] *= div;
 	e[2] *= div;
-}
-
-inline vec3 operator+(const vec3 &v1, const vec3 &v2) {
-	return vec3(v1.e[0] + v2.e[0], v1.e[1] + v2.e[1], v1.e[2] + v2.e[2]);
 }
 
 

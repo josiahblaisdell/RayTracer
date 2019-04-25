@@ -39,6 +39,12 @@
     <ClCompile Include="vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hitable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="RayTracer.h">
@@ -57,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hitable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

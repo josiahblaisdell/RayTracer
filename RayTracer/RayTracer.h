@@ -6,6 +6,8 @@
 #include <fstream>
 #include <ostream>
 #include <iostream>
+#include "vec3.h"
+#include "Ray.h"
 
 class RayTracer : public QMainWindow
 {
@@ -17,6 +19,10 @@ public:
 private:
 	Ui::RayTracerClass ui;
 	void CreateActions();
+	vec3 color(const Ray& r);
+
+	float hitsphere(const vec3& center, float radius, const Ray& r);
+
 private slots:
 	void on_actionCreatePPM_triggered();
 };
