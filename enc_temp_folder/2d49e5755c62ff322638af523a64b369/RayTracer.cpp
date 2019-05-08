@@ -15,7 +15,7 @@ vec3 RayTracer::color(const Ray & r, hitable_list world)
 {
 	HitRecord rec;
 	//min is 0.0001 to resolve shadow acne problem
-	if (world.hit(r, 0.001, DBL_MAX, rec) ){
+	if (world.hit(r, 0.0001, DBL_MAX, rec) ){
 		vec3 target = rec.p + rec.normal + random_in_unit_sphere();
 		//pick a random point s from the unit sphere that is tanget to the hitpoint, 
 		//	send a ray from the hitpoint p to the random point s. 

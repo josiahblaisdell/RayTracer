@@ -2,8 +2,6 @@
 #include "vec3.h"
 #include "Ray.h"
 #include <vector>
-class Material;
-
 struct HitRecord
 {
 	//time variable for things like motion blur
@@ -12,10 +10,6 @@ struct HitRecord
 	vec3 p;
 	//normal vector at the point that was his
 	vec3 normal;
-
-	//hitables and materials need to know about eachother
-	//materials will define how rays interract with surface
-	Material* mat_p;
 };
 
 class hitable {
