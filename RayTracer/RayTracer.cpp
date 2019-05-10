@@ -5,22 +5,61 @@ RayTracer::RayTracer(QWidget *parent)
 {
 	ui.setupUi(this);
 	CreateActions();
+	omp_set_num_threads(4);
+}
+
+hitable_list RayTracer::TestScene()
+{
+	int n = 500;
+	hitable_list world;
+	world.list->push_back(new Sphere(vec3(0, -1000, 0), 1000, new Lambertian(vec3(0.5, 0.5, 0.5))));
+	int i = 1;
+	for (int a = -11; a < 11; a++)
+	{
+		for (int b = -11; b < 11; b++)
+		{
+			double choose_mat = uniformdistribution(eng);
+			vec3 center(a + .9*uniformdistribution(eng), 0.2, b + 0.9*uniformdistribution(eng));
+			if ((center - vec3(4,.2,0)).length() > .9)
+			{
+				if (choose_mat < .8) { //diffuse sphere
+					world.list->push_back(new Sphere(center, 0.2, new Lambertian(vec3(uniformdistribution(eng)*uniformdistribution(eng), uniformdistribution(eng)*uniformdistribution(eng), uniformdistribution(eng)*uniformdistribution(eng)))));
+				}
+				else if (choose_mat < .95) { //metal sphere
+					world.list->push_back(new Sphere(center, 0.2,
+						new Metal(vec3(0.5*(1 + uniformdistribution(eng)), 0.5*(1 + uniformdistribution(eng)), 0.5*(1 + uniformdistribution(eng))), 0.5*(uniformdistribution(eng)))));
+				}
+				else { //glass
+					world.list->push_back(new Sphere(center, 0.2, new Dielectric(1.5)));
+				}
+			}
+		}
+	}
+	world.list->push_back(new Sphere(vec3(0, 1, 0), 1.0, new Dielectric(1.5)));
+	world.list->push_back(new Sphere(vec3(-4, 1, 0), 1.0, new Lambertian(vec3(0.4,0.2,0.1))));
+	world.list->push_back(new Sphere(vec3(-4, 1, 0), 1.0, new Metal(vec3(0.7, 0.6, 0.5),0.0)));
+
+	return world;
 }
 
 void RayTracer::CreateActions() {
 	connect(ui.CreatePPM, &QAction::triggered, this, &RayTracer::on_actionCreatePPM_triggered);
 }
 
-vec3 RayTracer::color(const Ray & r, hitable_list world)
+vec3 RayTracer::color(const Ray & r, hitable_list world, int depth)
 {
 	HitRecord rec;
 	//min is 0.0001 to resolve shadow acne problem
-	if (world.hit(r, 0.001, DBL_MAX, rec) ){
+	if (world.hit(r, 0.001, DBL_MAX, rec)) {
+		Ray scattered;
+		vec3 attenuation;
+		if (depth < 50 && rec.mat_p->scatter(r, rec, attenuation, scattered)) {
+			return attenuation * color(scattered, world, depth + 1);
+		}
+		else {
+			return vec3(0, 0, 0);
+		}
 		vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-		//pick a random point s from the unit sphere that is tanget to the hitpoint, 
-		//	send a ray from the hitpoint p to the random point s. 
-		//	This tangent sphere has center p+N (N is normal to sphere at point p).
-		return 0.5*color(Ray(rec.p,target-rec.p),world);
 	}
 	else {
 		vec3 dir = unitize(r.direction());
@@ -66,9 +105,9 @@ void RayTracer::on_actionCreatePPM_triggered() {
 	double upper_bound = 1;
 	std::uniform_real_distribution<double> unif(lower_bound, upper_bound);
 	std::default_random_engine re;
-	int nx = 480;
-	int ny = 270;
-	int ns = 100;
+	int nx = 1200;
+	int ny = 800;
+	int ns = 10;
 	std::string filepath = "image.ppm";
 	std::ofstream of;
 	of.open(filepath.c_str(), std::ios_base::app);
@@ -81,20 +120,35 @@ void RayTracer::on_actionCreatePPM_triggered() {
 	vec3 verticle(0., 2., 0.);
 	//location of the camera
 	vec3 origin(0., 0., 0.);
-	Camera cam;
-	hitable_list world;
-	world.list->push_back(new Sphere(vec3(0, 0, -1), 0.5));
-	world.list->push_back(new Sphere(vec3(0, -100.5, -1), 100));
+
+	vec3 lookfrom(13, 2, 3);
+	vec3 lookat(0, 0, 0);
+	double dist_to_focus = 10.0;
+	double aperture = 0.1;
+
+	Camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
+	hitable_list world = TestScene();
+	//world.list->push_back(new Sphere(vec3(0, 0, -1), 0.5, new Lambertian(vec3(.294,0.,.51))));
+	//world.list->push_back(new Sphere(vec3(0, -100.5, -1), 100, new Lambertian(vec3(.8, .8, 0.))));
+	//world.list->push_back(new Sphere(vec3(1, 0, -1), 0.5, new Metal(vec3(.8, .6, .2))));
+	//glass has a ref_idx of 1.5 (1.3 - 1.7)
+	//world.list->push_back(new Sphere(vec3(-1, 0, -1), 0.5, new Dielectric(1.5)));
+	//world.list->push_back(new Sphere(vec3(-1, 0, -1), -0.45, new Dielectric(1.5)));
 	//pixels are written in rows left to right
 	//rows are written from top to bottom
 	//red is 0 on left and goes to 1 on the right
 	//green goes from 0 on the bottom to 1 at the top.
 	of << "P3\n" << nx << " " << ny << "\n255\n";
-	for (int j = ny -1; j >= 0; j--)
+	vec3 c(0., 0., 0.);
+	Ray ray;
+
+	for (int j = ny - 1; j >= 0; j--)
 	{
+
 		for (int i = 0; i < nx; i++)
 		{
-			vec3 c(0., 0., 0.);
+			
+			c = vec3(0, 0, 0);
 			for (int s = 0; s < ns; s++)
 			{
 				double u = double(i + unif(re)) / double(nx);
@@ -102,11 +156,14 @@ void RayTracer::on_actionCreatePPM_triggered() {
 
 				//when j = ny and i = 0 lower_left + u*horizontal + v*verticle = upper_right
 				//First ray is shot at upper right corner going across then down.
-				Ray ray = cam.GetRay(u, v);
+				ray = cam.GetRay(u, v);
 				vec3 p = ray[2.];
-				c = c + color(ray, world);
+				c = c + color(ray, world,0);
 			}
+
 			c = c / double(ns);
+			//sqrt is for gamma correction, in this case gamma = 2
+			c = vec3(sqrt(c[0]), sqrt(c[1]), sqrt(c[2]));
 			vec3 icolor(c[0] * 255.99, c[1] * 255.99, c[2] * 255.99);
 			int ir = int(icolor[0]);
 			int ig = int(icolor[1]);

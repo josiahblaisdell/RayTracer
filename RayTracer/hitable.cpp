@@ -1,9 +1,10 @@
 #include "Hitable.h"
 
-Sphere::Sphere(vec3 cen, double r)
+Sphere::Sphere(vec3 cen, double r, Material* m)
 {
 	center = cen;
 	radius = r;
+	mat = m;
 }
 
 bool Sphere::hit(const Ray & r, double tmin, double tmax, HitRecord & rec) const
@@ -20,6 +21,7 @@ bool Sphere::hit(const Ray & r, double tmin, double tmax, HitRecord & rec) const
 			rec.t = temp;
 			rec.p = r[rec.t];
 			rec.normal = (rec.p - center) / radius;
+			rec.mat_p = mat;
 			return true;
 		}
 		temp = -b + sqrt(b*b - 4*a * c) / (2 * a);
@@ -28,6 +30,7 @@ bool Sphere::hit(const Ray & r, double tmin, double tmax, HitRecord & rec) const
 			rec.t = temp;
 			rec.p = r[rec.t];
 			rec.normal = (rec.p - center) / radius;
+			rec.mat_p = mat;
 			return true;
 		}
 	}
